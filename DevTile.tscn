@@ -23,7 +23,6 @@ __meta__ = {
 
 [node name="StaticBody2D" type="StaticBody2D" parent="0" index="0"]
 
-editor/display_folded = true
 position = Vector2( 5, 5 )
 scale = Vector2( 0.15625, 0.15625 )
 input_pickable = false

@@ -9,8 +9,14 @@ func _physics_process(delta):
 		velocity.x = 0
 		if Input.is_action_pressed('right'):
 			velocity.x += 1
+			$AnimatedSprite.play("sprint")
+			$AnimatedSprite.flip_h = false
 		if Input.is_action_pressed('left'):
 			velocity.x -= 1
+			$AnimatedSprite.play("sprint")
+			$AnimatedSprite.flip_h = true
+		elif !Input.is_action_pressed('right'):
+			$AnimatedSprite.play("idle")
 		velocity.x *= speed
 	if velocity.y < 500:
 		velocity.y += 20
