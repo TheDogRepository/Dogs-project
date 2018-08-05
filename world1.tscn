@@ -1,0 +1,182 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://player.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://DevTile.tres" type="TileSet" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 10 )
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 16, 16 )
+
+[sub_resource type="Gradient" id=4]
+
+offsets = PoolRealArray( 0, 0.325444, 0.727811, 1 )
+colors = PoolColorArray( 0, 0, 0, 0, 0.16568, 0.16568, 0.16568, 1, 0.448167, 0.448167, 0.448167, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=5]
+
+flags = 4
+gradient = SubResource( 4 )
+width = 2048
+
+[sub_resource type="ParticlesMaterial" id=3]
+
+render_priority = 0
+trail_divisor = 1
+emission_shape = 2
+emission_box_extents = Vector3( 35, 1, 1 )
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = true
+spread = 45.0
+flatness = 0.0
+gravity = Vector3( 0, 98, 0 )
+initial_velocity = 25.0
+initial_velocity_random = 0.0
+angular_velocity = 0.0
+angular_velocity_random = 0.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 0.0
+linear_accel_random = 0.0
+radial_accel = 0.0
+radial_accel_random = 0.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 0.0
+damping_random = 0.0
+angle = 0.0
+angle_random = 0.0
+scale = 1.0
+scale_random = 0.0
+color_ramp = SubResource( 5 )
+hue_variation = 0.0
+hue_variation_random = 0.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Color" ]
+
+[node name="world1" type="Node" index="0"]
+
+[node name="player" type="KinematicBody2D" parent="." index="0"]
+
+position = Vector2( 140, 70 )
+scale = Vector2( 0.9375, 0.9375 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+speed = 100
+
+[node name="Sprite" type="Sprite" parent="player" index="0"]
+
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player" index="1"]
+
+scale = Vector2( 2, 2 )
+shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="floor" type="StaticBody2D" parent="." index="1"]
+
+editor/display_folded = true
+position = Vector2( 150, 340 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="floor" index="0"]
+
+self_modulate = Color( 0.273438, 0.273438, 0.273438, 1 )
+position = Vector2( 9.53674e-07, 9.53674e-07 )
+scale = Vector2( 0.9375, 0.9375 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floor" index="1"]
+
+position = Vector2( -1.66893e-06, -2.38419e-07 )
+scale = Vector2( 1.875, 1.875 )
+shape = SubResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="TileMap" type="TileMap" parent="." index="2"]
+
+mode = 0
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 10, 10 )
+cell_quadrant_size = 16
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 2
+cell_tile_origin = 0
+cell_y_sort = false
+cell_clip_uv = false
+collision_use_kinematic = false
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_layer = 1
+collision_mask = 1
+occluder_light_mask = 1
+format = 1
+tile_data = PoolIntArray( 1966118, 0, 0, 1966119, 2, 0, 2031651, 0, 0, 2031652, 1, 0, 2031653, 1, 0, 2031654, 4, 0, 2031655, 5, 0, 2097187, 3, 0, 2097188, 4, 0, 2097189, 4, 0, 2097190, 4, 0, 2097191, 5, 0, 2162712, 0, 0, 2162713, 1, 0, 2162714, 1, 0, 2162715, 1, 0, 2162716, 1, 0, 2162717, 1, 0, 2162718, 1, 0, 2162719, 1, 0, 2162720, 1, 0, 2162721, 1, 0, 2162722, 1, 0, 2162723, 4, 0, 2162724, 4, 0, 2162725, 4, 0, 2162726, 4, 0, 2162727, 5, 0, 2228248, 3, 0, 2228249, 4, 0, 2228250, 4, 0, 2228251, 4, 0, 2228252, 4, 0, 2228253, 4, 0, 2228254, 4, 0, 2228255, 4, 0, 2228256, 4, 0, 2228257, 4, 0, 2228258, 4, 0, 2228259, 4, 0, 2228260, 4, 0, 2228261, 4, 0, 2228262, 4, 0, 2228263, 5, 0, 2293784, 3, 0, 2293785, 4, 0, 2293786, 4, 0, 2293787, 4, 0, 2293788, 4, 0, 2293789, 4, 0, 2293790, 4, 0, 2293791, 4, 0, 2293792, 4, 0, 2293793, 4, 0, 2293794, 4, 0, 2293795, 4, 0, 2293796, 4, 0, 2293797, 4, 0, 2293798, 4, 0, 2293799, 5, 0, 2359320, 6, 0, 2359321, 7, 0, 2359322, 7, 0, 2359323, 7, 0, 2359324, 7, 0, 2359325, 7, 0, 2359326, 7, 0, 2359327, 7, 0, 2359328, 7, 0, 2359329, 7, 0, 2359330, 7, 0, 2359331, 7, 0, 2359332, 7, 0, 2359333, 7, 0, 2359334, 7, 0, 2359335, 8, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Particle test" type="Sprite" parent="." index="3"]
+
+editor/display_folded = true
+self_modulate = Color( 1, 0.234375, 0.234375, 0.397765 )
+position = Vector2( 220, 170 )
+scale = Vector2( 1.90625, 0.5 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Material", "Visibility" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Particles2D" type="Particles2D" parent="Particle test" index="0"]
+
+show_behind_parent = true
+emitting = true
+amount = 32
+lifetime = 2.3
+one_shot = false
+preprocess = 0.0
+speed_scale = 1.0
+explosiveness = 0.0
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = true
+draw_order = 0
+process_material = SubResource( 3 )
+texture = null
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Process Material", "Time", "Visibility" ]
+
+
