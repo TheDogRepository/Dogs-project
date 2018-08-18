@@ -41,6 +41,17 @@ up=[ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","de
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777232,"unicode":0,"echo":false,"script":null)
  ]
 
+[layer_names]
+
+2d_physics/layer_1="static object"
+2d_physics/layer_2="player"
+2d_physics/layer_3="NPC"
+2d_physics/layer_4="object"
+
+[physics]
+
+2d/cell_size=10
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"

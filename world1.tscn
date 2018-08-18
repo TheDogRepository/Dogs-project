@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://player.gd" type="Script" id=1]
 [ext_resource path="res://player/idle0.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://player/sprint0.png" type="Texture" id=4]
 [ext_resource path="res://player/sprint1.png" type="Texture" id=5]
 [ext_resource path="res://icon.png" type="Texture" id=6]
+[ext_resource path="res://DevTile.tres" type="TileSet" id=7]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -82,6 +83,11 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Color" ]
 
+[sub_resource type="RectangleShape2D" id=7]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 10 )
+
 [node name="world1" type="Node" index="0"]
 
 [node name="player" type="KinematicBody2D" parent="." index="0"]
@@ -90,8 +96,8 @@ editor/display_folded = true
 position = Vector2( 140, 70 )
 scale = Vector2( 0.9375, 0.9375 )
 input_pickable = false
-collision_layer = 1
-collision_mask = 1
+collision_layer = 2
+collision_mask = 9
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
 __meta__ = {
@@ -144,11 +150,12 @@ editor/display_folded = true
 position = Vector2( 150, 340 )
 input_pickable = false
 collision_layer = 1
-collision_mask = 1
+collision_mask = 7
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
+_sections_unfolded = [ "Collision" ]
 __meta__ = {
 "_edit_group_": true
 }
@@ -174,11 +181,12 @@ editor/display_folded = true
 position = Vector2( 240, 390 )
 input_pickable = false
 collision_layer = 1
-collision_mask = 1
+collision_mask = 7
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
+_sections_unfolded = [ "Collision" ]
 __meta__ = {
 "_edit_group_": true
 }
@@ -200,10 +208,11 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="floor3" type="StaticBody2D" parent="." index="3"]
 
+editor/display_folded = true
 position = Vector2( 300, 390 )
 input_pickable = false
 collision_layer = 1
-collision_mask = 1
+collision_mask = 7
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
 friction = 1.0
@@ -262,25 +271,38 @@ h_frames = 1
 v_frames = 1
 _sections_unfolded = [ "Process Material", "Time", "Visibility" ]
 
-[node name="Sprite" type="Sprite" parent="." index="5"]
+[node name="TileMap" type="TileMap" parent="." index="5"]
 
-position = Vector2( 250, 340 )
-scale = Vector2( 0.34375, 0.34375 )
-texture = ExtResource( 6 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="RigidBody2D" type="RigidBody2D" parent="Sprite" index="0"]
-
-editor/display_folded = true
-input_pickable = false
+mode = 0
+tile_set = ExtResource( 7 )
+cell_size = Vector2( 10, 10 )
+cell_quadrant_size = 16
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 2
+cell_tile_origin = 0
+cell_y_sort = false
+cell_clip_uv = false
+collision_use_kinematic = false
+collision_friction = 1.0
+collision_bounce = 0.0
 collision_layer = 1
 collision_mask = 1
+occluder_light_mask = 1
+format = 1
+tile_data = PoolIntArray( 2490402, 0, 0, 2490403, 1, 0, 2490404, 1, 0, 2490405, 1, 0, 2490406, 1, 0, 2490407, 1, 0, 2490408, 1, 0, 2490409, 1, 0, 2490410, 1, 0, 2490411, 1, 0, 2490412, 2, 0, 2555938, 3, 0, 2555939, 4, 0, 2555940, 4, 0, 2555941, 4, 0, 2555942, 4, 0, 2555943, 4, 0, 2555944, 4, 0, 2555945, 4, 0, 2555946, 4, 0, 2555947, 7, 0, 2555948, 8, 0, 2621474, 6, 0, 2621475, 7, 0, 2621476, 7, 0, 2621477, 7, 0, 2621478, 7, 0, 2621479, 7, 0, 2621480, 7, 0, 2621481, 7, 0, 2621482, 8, 0 )
+_sections_unfolded = [ "Cell" ]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="." index="6"]
+
+editor/display_folded = true
+position = Vector2( 250, 340 )
+input_pickable = false
+collision_layer = 8
+collision_mask = 11
 mode = 0
-mass = 1.0
-friction = 1.0
-bounce = 0.0
+mass = 0.1
+friction = 0.5
+bounce = 1.0
 gravity_scale = 1.0
 custom_integrator = false
 continuous_cd = 0
@@ -292,10 +314,19 @@ linear_velocity = Vector2( 0, 0 )
 linear_damp = -1.0
 angular_velocity = 0.0
 angular_damp = -1.0
-_sections_unfolded = [ "Collision", "Pickable" ]
+_sections_unfolded = [ "Collision", "Pickable", "Transform" ]
+__meta__ = {
+"_edit_group_": true
+}
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Sprite/RigidBody2D" index="0"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="RigidBody2D" index="0"]
 
-shape = SubResource( 3 )
+shape = SubResource( 7 )
+
+[node name="Sprite" type="Sprite" parent="RigidBody2D" index="1"]
+
+position = Vector2( -1.90735e-06, -1.90735e-06 )
+scale = Vector2( 0.3125, 0.3125 )
+texture = ExtResource( 6 )
 
 
